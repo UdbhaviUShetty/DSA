@@ -1,30 +1,23 @@
 
-auto init = []() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    return 0;
-}();
 class Solution {
 public:
 
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> res;
-        for(size_t i=0;i<nums.size()-1;i++)
+        map<int,int> hash;
+        int n=nums.size();
+        for(int i=0;i<n;i++)
         {
-            for(size_t j=i+1;j<nums.size();j++)
+            int num=nums[i];
+            int more=target-num;
+            if(hash.find(more)!=hash.end())
             {
-                if(nums[i]+nums[j]==target)
-                {
-                    res.push_back(i);
-                    res.push_back(j);
-                    
-                }
-
-                    
+                return {hash[more],i};
             }
-            
+            hash[num]=i;
+
         }
-        return res;
+        return {-1,-1};
+       
         
     }
 };
